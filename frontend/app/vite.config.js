@@ -7,15 +7,7 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      '/login': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-      },
-      '/register': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-      },
-      '/get-me': {
+      '/api': {
         target: 'http://localhost:3000',
         changeOrigin: true,
       },

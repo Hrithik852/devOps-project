@@ -15,9 +15,9 @@ export function AuthProvider({ children }) {
   const [authError, setAuthError] = useState(null);
 
   // Hydrate user session on start
-  const checkAuth = useCallback(async () => {
+  const checkAuth = useCallback(async (showLoading = false) => {
     try {
-      setLoading(true);
+      if (showLoading) setLoading(true);
       const profile = await getMe();
       if (profile && (profile.username || profile.email)) {
         setUser(profile);
@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    checkAuth();
+    checkAuth(true);
   }, [checkAuth]);
 
   const handleLogin = async (identifier, password) => {

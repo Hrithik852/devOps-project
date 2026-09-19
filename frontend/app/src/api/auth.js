@@ -8,7 +8,7 @@ export async function loginUser({ identifier, password }) {
     password,
   };
 
-  const response = await fetch('/login', {
+  const response = await fetch('/api/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export async function loginUser({ identifier, password }) {
 export async function registerUser({ username, email, password }) {
   const payload = { username, email, password };
 
-  const response = await fetch('/register', {
+  const response = await fetch('/api/auth/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export async function registerUser({ username, email, password }) {
 }
 
 export async function getMe() {
-  const response = await fetch('/get-me', {
+  const response = await fetch('/api/auth/get-me', {
     method: 'GET',
     credentials: 'include',
   });
