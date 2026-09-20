@@ -5,8 +5,15 @@ let registerController=async(req,res)=>{
 try{
     const {username,email,password}=req.body;
     const pass=await bcrypt.hash(password,10)
-    const isUserExist=await userModel.findOne({username,email})
-    if(isUserExist) return res.status(401).json("user already exists");
+    const isUserExist=await userModel.findOne({
+        $or: [{username}, {email}]
+    })
+    if(isUserExist) {
+        const message = isUserExist.email === email
+            ? 'Email already in use.'
+            : 'Username already in use.';
+        return res.status(409).json({message});
+    }
     const user=await userModel.create({username,email,password:pass});
     console.log(user);
     
@@ -16,7 +23,15 @@ try{
 
 }
 catch(err){
-    console.log(err);
+    console.error(err);
+    if (err.code === 11000) {
+        const field = Object.keys(err.keyPattern || {})[0];
+        const message = field === 'email'
+            ? 'Email already in use.'
+            : 'Username already in use.';
+        return res.status(409).json({message});
+    }
+    return res.status(500).json({message:'reg failed'})
 }
 }
 
