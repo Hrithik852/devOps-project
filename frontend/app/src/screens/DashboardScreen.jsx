@@ -1,11 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/useAuth';
 import Navbar from '../components/Navbar';
+
+// Hook: tracks mouse position as CSS vars on each glow-card element
+function useCardGlow() {
+  useEffect(() => {
+    function track(e) {
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width)  * 100;
+      const y = ((e.clientY - rect.top)  / rect.height) * 100;
+      card.style.setProperty('--mx', `${x}%`);
+      card.style.setProperty('--my', `${y}%`);
+    }
+    const cards = document.querySelectorAll('.dash-card, .metric-tile');
+    cards.forEach((c) => c.addEventListener('mousemove', track));
+    return () => cards.forEach((c) => c.removeEventListener('mousemove', track));
+  });
+}
 
 export default function DashboardScreen() {
   const { user, logout, refreshUser } = useAuth();
   const [riskTolerance, setRiskTolerance] = useState(68);
-  const [showProfile, setShowProfile] = useState(false);
+  useCardGlow();
 
   useEffect(() => {
     refreshUser();
@@ -20,7 +37,9 @@ export default function DashboardScreen() {
       <Navbar
         mode="dashboard"
         username={username}
-        onProfile={() => setShowProfile(true)}
+        email={email}
+        userId={userId}
+        onLogout={logout}
       />
 
       <div className="dash-page oil-canvas-bg">
@@ -208,7 +227,7 @@ export default function DashboardScreen() {
 
               <button
                 type="button"
-                className="btn-action btn-action-danger"
+                className="btn-action btn-action-primary"
                 style={{ width: '100%', justifyContent: 'center' }}
                 onClick={logout}
               >
@@ -221,51 +240,7 @@ export default function DashboardScreen() {
         </div>
       </div>
 
-      {/* Profile modal */}
-      {showProfile && (
-        <div className="modal-overlay" onClick={() => setShowProfile(false)}>
-          <div
-            className="modal-box glass-surface"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="modal-header">
-              <span className="modal-title">Account Details</span>
-              <button
-                type="button"
-                className="modal-close"
-                onClick={() => setShowProfile(false)}
-              >
-                <span className="material-symbols-outlined">close</span>
-              </button>
-            </div>
-
-            <div className="profile-row">
-              <span className="profile-key">Username</span>
-              <span className="profile-val">{username}</span>
-            </div>
-            <div className="profile-row">
-              <span className="profile-key">Email</span>
-              <span className="profile-val">{email}</span>
-            </div>
-            <div className="profile-row">
-              <span className="profile-key">User ID</span>
-              <span className="profile-val" style={{ fontSize: '11px' }}>{userId}</span>
-            </div>
-
-            <div className="divider" />
-
-            <button
-              type="button"
-              className="btn-action btn-action-danger"
-              style={{ width: '100%', justifyContent: 'center' }}
-              onClick={() => { setShowProfile(false); logout(); }}
-            >
-              <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>logout</span>
-              Sign Out
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Profile dropdown is now inside the Navbar */}
     </>
   );
 }
