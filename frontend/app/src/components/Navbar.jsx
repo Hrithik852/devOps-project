@@ -40,7 +40,7 @@ export default function Navbar({ mode = 'auth', activeTab, onTabChange, username
           </span>
         </div>
         <div>
-          <div className="nav-brand-name">Verdant</div>
+          <div className="nav-brand-name">STUDEV-OPS</div>
           <div className="nav-brand-tag" style={{ display: window.innerWidth < 600 ? 'none' : 'block' }}>
             Liquid Glass Platform
           </div>
@@ -90,7 +90,7 @@ export default function Navbar({ mode = 'auth', activeTab, onTabChange, username
               className="dash-nav-icon-btn"
               type="button"
               aria-label="Notifications"
-              onClick={() => {}}
+              onClick={() => { }}
               style={{ border: 'none' }}
             >
               <span className="material-symbols-outlined" style={{ fontSize: '18px', color: '#c8eae1' }}>
