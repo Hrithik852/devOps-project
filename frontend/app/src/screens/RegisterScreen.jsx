@@ -46,8 +46,8 @@ export default function RegisterScreen({ onNavigate }) {
                 Your account. <em>Your data.</em> Your control.
               </h2>
               <p className="brand-subtitle">
-                Create an account in seconds. Secured with bcrypt hashing,
-                JWT tokens, and cookie-based session management.
+                Built for modern DevOps workflows — CI/CD pipelines,
+                containerization, and infrastructure as code.
               </p>
             </div>
 
@@ -55,34 +55,34 @@ export default function RegisterScreen({ onNavigate }) {
               <li className="feature-item">
                 <div className="feature-icon">
                   <span className="material-symbols-outlined" style={{ fontSize: '18px', color: '#a9d2b6' }}>
-                    encrypted
+                    box
                   </span>
                 </div>
                 <div className="feature-text">
-                  <h4>Password Hashed with bcrypt</h4>
-                  <p>Your credentials are salted and hashed before storage — never stored in plain text.</p>
+                  <h4>Containerization</h4>
+                  <p>Package applications with Docker for consistent environments across development and production.</p>
                 </div>
               </li>
               <li className="feature-item">
                 <div className="feature-icon">
                   <span className="material-symbols-outlined" style={{ fontSize: '18px', color: '#a9d2b6' }}>
-                    token
+                    cycle
                   </span>
                 </div>
                 <div className="feature-text">
-                  <h4>Signed JWT Sessions</h4>
-                  <p>Sessions are issued as signed JWT tokens with configurable expiry via environment secrets.</p>
+                  <h4>Continuous Deployment</h4>
+                  <p>Push tested code to production quickly and reliably through automated pipelines.</p>
                 </div>
               </li>
               <li className="feature-item">
                 <div className="feature-icon">
                   <span className="material-symbols-outlined" style={{ fontSize: '18px', color: '#a9d2b6' }}>
-                    shield_person
+                    difference
                   </span>
                 </div>
                 <div className="feature-text">
-                  <h4>Protected Routes</h4>
-                  <p>Dashboard endpoints are protected with middleware that validates the session token on every request.</p>
+                  <h4>Version Control</h4>
+                  <p>Manage code changes efficiently with Git and enable smooth collaboration across teams.</p>
                 </div>
               </li>
             </ul>

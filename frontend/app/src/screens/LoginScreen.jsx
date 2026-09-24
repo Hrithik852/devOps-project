@@ -36,13 +36,13 @@ export default function LoginScreen({ onNavigate }) {
         <aside className="auth-left">
           <div className="brand-panel">
             <div className="brand-headline">
-              <span className="brand-eyebrow">Verdant Platform</span>
+              <span className="brand-eyebrow">Devops Project</span>
               <h2 className="brand-title">
-                Manage assets <em>smarter</em> with glass-grade precision.
+                Ship faster with <em>DevOps</em> precision.
               </h2>
               <p className="brand-subtitle">
-                A production-ready dashboard built for modern portfolio management,
-                real-time analytics, and secure authentication.
+                A production-ready web app designed for learning
+                modern DevOps practices — from code to cloud.
               </p>
             </div>
 
@@ -50,12 +50,12 @@ export default function LoginScreen({ onNavigate }) {
               <li className="feature-item">
                 <div className="feature-icon">
                   <span className="material-symbols-outlined" style={{ fontSize: '18px', color: '#a9d2b6' }}>
-                    lock
+                    merge
                   </span>
                 </div>
                 <div className="feature-text">
-                  <h4>JWT Cookie Auth</h4>
-                  <p>Stateless, secure authentication with HttpOnly tokens stored server-side.</p>
+                  <h4>Continuous Integration</h4>
+                  <p>Automatically build and test your code on every commit to catch issues early.</p>
                 </div>
               </li>
               <li className="feature-item">
@@ -65,8 +65,8 @@ export default function LoginScreen({ onNavigate }) {
                   </span>
                 </div>
                 <div className="feature-text">
-                  <h4>Live Portfolio Analytics</h4>
-                  <p>Real-time performance metrics and risk-adjusted yield calculations.</p>
+                  <h4>Infrastructure as Code</h4>
+                  <p>Define and manage your infrastructure using code for consistency and repeatability.</p>
                 </div>
               </li>
               <li className="feature-item">
